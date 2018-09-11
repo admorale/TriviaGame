@@ -1,0 +1,38 @@
+body {
+    margin: 0%;
+    padding: 0%;
+}
+#TopBanner {
+    background: rgb(0, 110, 255);
+    border: 1.5px solid black;
+    color: white;
+    text-align: center;
+}
+#MidBanner {
+    background: rgb(30, 136, 172);
+    border: 1.5px  solid black;
+    margin-top: 0.5px;
+    line-height: 32px;
+}
+#start, #reload {
+    margin-left: 2%;
+    background: rgb(18, 87, 5);
+    color: white;
+}
+.QSection {
+    display: inline-block;
+    float: left;
+    width: 25%;
+    height: 400px;
+}
+.QSection:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.QSection h2 {
+    text-align: center;
+}
+.quest {
+    font-size: 12px;
+}

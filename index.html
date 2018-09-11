@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+	<html> 
+	<head>  
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Linking CSS --> 
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
+	</head> 
+	<body> 
+        <div id="TopBanner">
+            <h1>TRIVIA GAME</h1>
+            <h2>Answer correctly to win</h2>
+            <h3>3 categories: Geography, Politics and History</h2>    
+        </div>
+        <div id="MidBanner">
+            <button id="start">Start Game</button>
+            <button id="reload">Reload Game</button>
+
+        </div>
+        <div class="container">
+            <div class="QSection" id="Inst">
+                        <h2>Instructions</h2>
+        
+                    </div>
+            <div class="QSection">
+                <h2>Geography</h2>
+                <div id="Geo"></div>
+            </div>
+            <div class="QSection">
+                <h2>Politics</h2>
+                <div id="Pol"></div>
+            </div>
+            <div class="QSection">
+                <h2>History</h2>
+                <div id="Hist"></div>
+
+            </div>
+        </div>
+
+	<!-- Linking our JavaScript file at the end of body --> 
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+	</body> 
+	</html>

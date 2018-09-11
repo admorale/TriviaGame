@@ -22,7 +22,16 @@ body {
 .QSection {
     display: inline-block;
     float: left;
-    width: 25%;
+    width: 27%;
+    height: 400px;
+}
+.Instruction {
+    background: lightgrey;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    margin-left: 1%;
+    width: 12%;
     height: 400px;
 }
 .QSection:after {

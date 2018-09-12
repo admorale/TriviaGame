@@ -14,7 +14,7 @@ body {
     margin-top: 0.5px;
     line-height: 32px;
 }
-#start, #reload {
+#start, #reload, #Done {
     margin-left: 2%;
     background: rgb(18, 87, 5);
     color: white;

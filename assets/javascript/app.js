@@ -3,6 +3,16 @@ var randomGeo = [];
 var randomPol = [];
 var randomHist =[];
 
+var rAnswers = 0;
+var wAnswers = 0;
+var unAnswered = 0;
+var GeoQ1_right;
+var GeoQ2_right;
+var PolQ1_right;
+var PolQ2_right;
+var HistQ1_right;
+var HistQ2_right;
+
 var origArray = [1,2,3,4,5,6,7,8];
 
 var geography = {
@@ -121,14 +131,14 @@ var WHistory = {
         Options: ["Incas", "Mayans", "Caribes", "Tahinos", "Olmecs"]
     },
     7: {
-        Question: "Title of the political authority of a city:",
-        rightAnswer: "Mayor",
-        Options: ["President", "Councelor", "Secretary", "Chancellor", "Mayor"]
+        Question: "Who was the Russian Czar in 1917?",
+        rightAnswer: "Nicholas II",
+        Options: ["Nicholas II", "Peter the Great", "Ivan the Terrible", "Boris Godunov", "Catherine"]
     },
     8: {
-        Question: "Element of the political system that create laws:",
-        rightAnswer: "Congress",
-        Options: ["Ministry", "Congress", "Elder's Council", "Comune", "Court"]
+        Question: "What was the name of modern Mexico during the Spanish Colony era?",
+        rightAnswer: "New Spain",
+        Options: ["Tenochtitlan", "Aztlan", "New Spain", "California", "New Madrid"]
     }
 }
 function randomNumGeo(min,max,source) {
@@ -191,78 +201,159 @@ $("#start").on("click", function(){
     }
     // Geography Question #1
     var GeoQ1 = randomGeo[0];
-    var GeoQ1_right = geography[GeoQ1].rightAnswer;
+    GeoQ1_right = geography[GeoQ1].rightAnswer;
+    //console.log(GeoQ1_right);
     $("#Geo").append("<div id='Q1'></div>");
     $("#Geo > #Q1").append("<p class='quest'>Question: "+geography[GeoQ1].Question);
     $("#Geo > #Q1").append("<form id='formGeoQ1'></form>");
-    $("#formGeoQ1").append("<input type='radio' id='opt1' name='"+geography[GeoQ1].Options[0]+"' value='"+geography[GeoQ1].Options[0]+"'>"+geography[GeoQ1].Options[0]+"<br>");
-    $("#formGeoQ1").append("<input type='radio' id='opt2' name='"+geography[GeoQ1].Options[1]+"' value='"+geography[GeoQ1].Options[1]+"'>"+geography[GeoQ1].Options[1]+"<br>");
-    $("#formGeoQ1").append("<input type='radio' id='opt3' name='"+geography[GeoQ1].Options[2]+"' value='"+geography[GeoQ1].Options[2]+"'>"+geography[GeoQ1].Options[2]+"<br>");
-    $("#formGeoQ1").append("<input type='radio' id='opt4' name='"+geography[GeoQ1].Options[3]+"' value='"+geography[GeoQ1].Options[3]+"'>"+geography[GeoQ1].Options[3]+"<br>");
-    $("#formGeoQ1").append("<input type='radio' id='opt5' name='"+geography[GeoQ1].Options[4]+"' value='"+geography[GeoQ1].Options[4]+"'>"+geography[GeoQ1].Options[4]+"<br>");
+    $("#formGeoQ1").append("<input type='radio' class='radioBtn' id='opt1' name='GeoQuestion1' value='"+geography[GeoQ1].Options[0]+"'>"+geography[GeoQ1].Options[0]+"<br>");
+    $("#formGeoQ1").append("<input type='radio' class='radioBtn' id='opt2' name='GeoQuestion1' value='"+geography[GeoQ1].Options[1]+"'>"+geography[GeoQ1].Options[1]+"<br>");
+    $("#formGeoQ1").append("<input type='radio' class='radioBtn' id='opt3' name='GeoQuestion1' value='"+geography[GeoQ1].Options[2]+"'>"+geography[GeoQ1].Options[2]+"<br>");
+    $("#formGeoQ1").append("<input type='radio' class='radioBtn' id='opt4' name='GeoQuestion1' value='"+geography[GeoQ1].Options[3]+"'>"+geography[GeoQ1].Options[3]+"<br>");
+    $("#formGeoQ1").append("<input type='radio' class='radioBtn' id='opt5' name='GeoQuestion1' value='"+geography[GeoQ1].Options[4]+"'>"+geography[GeoQ1].Options[4]+"<br>");
     // Geography Question #2
     var GeoQ2 = randomGeo[1];
-    var GeoQ2_right = geography[GeoQ2].rightAnswer;
+    GeoQ2_right = geography[GeoQ2].rightAnswer;
+    //console.log(GeoQ2_right);
     $("#Geo").append("<div id='Q2'></div>");
     $("#Geo > #Q2").append("<p class='quest'>Question: "+geography[GeoQ2].Question);
     $("#Geo > #Q2").append("<form id='formGeoQ2'></form>");
-    $("#formGeoQ2").append("<input type='radio' id='opt1' name='"+geography[GeoQ2].Options[0]+"' value='"+geography[GeoQ2].Options[0]+"'>"+geography[GeoQ2].Options[0]+"<br>");
-    $("#formGeoQ2").append("<input type='radio' id='opt2' name='"+geography[GeoQ2].Options[1]+"' value='"+geography[GeoQ2].Options[1]+"'>"+geography[GeoQ2].Options[1]+"<br>");
-    $("#formGeoQ2").append("<input type='radio' id='opt3' name='"+geography[GeoQ2].Options[2]+"' value='"+geography[GeoQ2].Options[2]+"'>"+geography[GeoQ2].Options[2]+"<br>");
-    $("#formGeoQ2").append("<input type='radio' id='opt4' name='"+geography[GeoQ2].Options[3]+"' value='"+geography[GeoQ2].Options[3]+"'>"+geography[GeoQ2].Options[3]+"<br>");
-    $("#formGeoQ2").append("<input type='radio' id='opt5' name='"+geography[GeoQ2].Options[4]+"' value='"+geography[GeoQ2].Options[4]+"'>"+geography[GeoQ2].Options[4]+"<br>");
+    $("#formGeoQ2").append("<input type='radio' id='opt1' name='GeoQuestion2' value='"+geography[GeoQ2].Options[0]+"'>"+geography[GeoQ2].Options[0]+"<br>");
+    $("#formGeoQ2").append("<input type='radio' id='opt2' name='GeoQuestion2' value='"+geography[GeoQ2].Options[1]+"'>"+geography[GeoQ2].Options[1]+"<br>");
+    $("#formGeoQ2").append("<input type='radio' id='opt3' name='GeoQuestion2' value='"+geography[GeoQ2].Options[2]+"'>"+geography[GeoQ2].Options[2]+"<br>");
+    $("#formGeoQ2").append("<input type='radio' id='opt4' name='GeoQuestion2' value='"+geography[GeoQ2].Options[3]+"'>"+geography[GeoQ2].Options[3]+"<br>");
+    $("#formGeoQ2").append("<input type='radio' id='opt5' name='GeoQuestion2' value='"+geography[GeoQ2].Options[4]+"'>"+geography[GeoQ2].Options[4]+"<br>");
     
     //Building the Politics Questions
     for (i=0; i<2; i++){
         var newQuestion = randomPol[i];
-        console.log(politics[newQuestion].Question);
+        //console.log(politics[newQuestion].Question);
     }
     // Politics Question #1
     var PolQ1 = randomPol[0];
-    var PolQ1_right = politics[PolQ1].rightAnswer;
+    PolQ1_right = politics[PolQ1].rightAnswer;
     $("#Pol").append("<div id='Q1'></div>");
     $("#Pol > #Q1").append("<p class='quest'>Question: "+politics[PolQ1].Question);
     $("#Pol > #Q1").append("<form id='formPolQ1'></form>");
-    $("#formPolQ1").append("<input type='radio' id='opt1' name='"+politics[PolQ1].Options[0]+"' value='"+politics[PolQ1].Options[0]+"'>"+politics[PolQ1].Options[0]+"<br>");
-    $("#formPolQ1").append("<input type='radio' id='opt2' name='"+politics[PolQ1].Options[1]+"' value='"+politics[PolQ1].Options[1]+"'>"+politics[PolQ1].Options[1]+"<br>");
-    $("#formPolQ1").append("<input type='radio' id='opt3' name='"+politics[PolQ1].Options[2]+"' value='"+politics[PolQ1].Options[2]+"'>"+politics[PolQ1].Options[2]+"<br>");
-    $("#formPolQ1").append("<input type='radio' id='opt4' name='"+politics[PolQ1].Options[3]+"' value='"+politics[PolQ1].Options[3]+"'>"+politics[PolQ1].Options[3]+"<br>");
-    $("#formPolQ1").append("<input type='radio' id='opt5' name='"+politics[PolQ1].Options[4]+"' value='"+politics[PolQ1].Options[4]+"'>"+politics[PolQ1].Options[4]+"<br>");
+    $("#formPolQ1").append("<input type='radio' id='opt1' name='PolQuestion1' value='"+politics[PolQ1].Options[0]+"'>"+politics[PolQ1].Options[0]+"<br>");
+    $("#formPolQ1").append("<input type='radio' id='opt2' name='PolQuestion1' value='"+politics[PolQ1].Options[1]+"'>"+politics[PolQ1].Options[1]+"<br>");
+    $("#formPolQ1").append("<input type='radio' id='opt3' name='PolQuestion1' value='"+politics[PolQ1].Options[2]+"'>"+politics[PolQ1].Options[2]+"<br>");
+    $("#formPolQ1").append("<input type='radio' id='opt4' name='PolQuestion1' value='"+politics[PolQ1].Options[3]+"'>"+politics[PolQ1].Options[3]+"<br>");
+    $("#formPolQ1").append("<input type='radio' id='opt5' name='PolQuestion1' value='"+politics[PolQ1].Options[4]+"'>"+politics[PolQ1].Options[4]+"<br>");
     // Politics Question #1
     var PolQ2 = randomPol[1];
-    var PolQ2_right = politics[PolQ2].rightAnswer;
+    PolQ2_right = politics[PolQ2].rightAnswer;
     $("#Pol").append("<div id='Q2'></div>");
     $("#Pol > #Q2").append("<p class='quest'>Question: "+politics[PolQ2].Question);
     $("#Pol > #Q2").append("<form id='formPolQ2'></form>");
-    $("#formPolQ2").append("<input type='radio' id='opt1' name='"+politics[PolQ2].Options[0]+"' value='"+politics[PolQ2].Options[0]+"'>"+politics[PolQ2].Options[0]+"<br>");
-    $("#formPolQ2").append("<input type='radio' id='opt2' name='"+politics[PolQ2].Options[1]+"' value='"+politics[PolQ2].Options[1]+"'>"+politics[PolQ2].Options[1]+"<br>");
-    $("#formPolQ2").append("<input type='radio' id='opt3' name='"+politics[PolQ2].Options[2]+"' value='"+politics[PolQ2].Options[2]+"'>"+politics[PolQ2].Options[2]+"<br>");
-    $("#formPolQ2").append("<input type='radio' id='opt4' name='"+politics[PolQ2].Options[3]+"' value='"+politics[PolQ2].Options[3]+"'>"+politics[PolQ2].Options[3]+"<br>");
-    $("#formPolQ2").append("<input type='radio' id='opt5' name='"+politics[PolQ2].Options[4]+"' value='"+politics[PolQ2].Options[4]+"'>"+politics[PolQ2].Options[4]+"<br>");
+    $("#formPolQ2").append("<input type='radio' id='opt1' name='PolQuestion2' value='"+politics[PolQ2].Options[0]+"'>"+politics[PolQ2].Options[0]+"<br>");
+    $("#formPolQ2").append("<input type='radio' id='opt2' name='PolQuestion2' value='"+politics[PolQ2].Options[1]+"'>"+politics[PolQ2].Options[1]+"<br>");
+    $("#formPolQ2").append("<input type='radio' id='opt3' name='PolQuestion2' value='"+politics[PolQ2].Options[2]+"'>"+politics[PolQ2].Options[2]+"<br>");
+    $("#formPolQ2").append("<input type='radio' id='opt4' name='PolQuestion2' value='"+politics[PolQ2].Options[3]+"'>"+politics[PolQ2].Options[3]+"<br>");
+    $("#formPolQ2").append("<input type='radio' id='opt5' name='PolQuestion2' value='"+politics[PolQ2].Options[4]+"'>"+politics[PolQ2].Options[4]+"<br>");
 
     for (i=0; i<2; i++){
         var newQuestion = randomHist[i];
-        console.log(WHistory[newQuestion].Question);
+        //console.log(WHistory[newQuestion].Question);
     }
     var HistQ1 = randomHist[0];
-    var HistQ1_right = WHistory[HistQ1].rightAnswer;
+    HistQ1_right = WHistory[HistQ1].rightAnswer;
     $("#Hist").append("<div id='Q1'></div>");
     $("#Hist > #Q1").append("<p class='quest'>Question:"+WHistory[HistQ1].Question);
     $("#Hist > #Q1").append("<form id='formHistQ1'></form>");
-    $("#formHistQ1").append("<input type='radio' id='opt1' name='"+WHistory[HistQ1].Options[0]+"' value='"+WHistory[HistQ1].Options[0]+"'>"+WHistory[HistQ1].Options[0]+"<br>");
-    $("#formHistQ1").append("<input type='radio' id='opt2' name='"+WHistory[HistQ1].Options[1]+"' value='"+WHistory[HistQ1].Options[1]+"'>"+WHistory[HistQ1].Options[1]+"<br>");
-    $("#formHistQ1").append("<input type='radio' id='opt3' name='"+WHistory[HistQ1].Options[2]+"' value='"+WHistory[HistQ1].Options[2]+"'>"+WHistory[HistQ1].Options[2]+"<br>");
-    $("#formHistQ1").append("<input type='radio' id='opt4' name='"+WHistory[HistQ1].Options[3]+"' value='"+WHistory[HistQ1].Options[3]+"'>"+WHistory[HistQ1].Options[3]+"<br>");
-    $("#formHistQ1").append("<input type='radio' id='opt5' name='"+WHistory[HistQ1].Options[4]+"' value='"+WHistory[HistQ1].Options[4]+"'>"+WHistory[HistQ1].Options[4]+"<br>");
+    $("#formHistQ1").append("<input type='radio' id='opt1' name='HistQuestion1' value='"+WHistory[HistQ1].Options[0]+"'>"+WHistory[HistQ1].Options[0]+"<br>");
+    $("#formHistQ1").append("<input type='radio' id='opt2' name='HistQuestion1' value='"+WHistory[HistQ1].Options[1]+"'>"+WHistory[HistQ1].Options[1]+"<br>");
+    $("#formHistQ1").append("<input type='radio' id='opt3' name='HistQuestion1' value='"+WHistory[HistQ1].Options[2]+"'>"+WHistory[HistQ1].Options[2]+"<br>");
+    $("#formHistQ1").append("<input type='radio' id='opt4' name='HistQuestion1' value='"+WHistory[HistQ1].Options[3]+"'>"+WHistory[HistQ1].Options[3]+"<br>");
+    $("#formHistQ1").append("<input type='radio' id='opt5' name='HistQuestion1' value='"+WHistory[HistQ1].Options[4]+"'>"+WHistory[HistQ1].Options[4]+"<br>");
   
     var HistQ2 = randomHist[1];
-    var HistQ2_right = WHistory[HistQ2].rightAnswer;
+    HistQ2_right = WHistory[HistQ2].rightAnswer;
     $("#Hist").append("<div id='Q2'></div>");
     $("#Hist > #Q2").append("<p class='quest'>Question:"+WHistory[HistQ2].Question);
     $("#Hist > #Q2").append("<form id='formHistQ2'></form>");
-    $("#formHistQ2").append("<input type='radio' id='opt1' name='"+WHistory[HistQ2].Options[0]+"' value='"+WHistory[HistQ2].Options[0]+"'>"+WHistory[HistQ2].Options[0]+"<br>");
-    $("#formHistQ2").append("<input type='radio' id='opt2' name='"+WHistory[HistQ2].Options[1]+"' value='"+WHistory[HistQ2].Options[1]+"'>"+WHistory[HistQ2].Options[1]+"<br>");
-    $("#formHistQ2").append("<input type='radio' id='opt3' name='"+WHistory[HistQ2].Options[2]+"' value='"+WHistory[HistQ2].Options[2]+"'>"+WHistory[HistQ2].Options[2]+"<br>");
-    $("#formHistQ2").append("<input type='radio' id='opt4' name='"+WHistory[HistQ2].Options[3]+"' value='"+WHistory[HistQ2].Options[3]+"'>"+WHistory[HistQ2].Options[3]+"<br>");
-    $("#formHistQ2").append("<input type='radio' id='opt5' name='"+WHistory[HistQ2].Options[4]+"' value='"+WHistory[HistQ2].Options[4]+"'>"+WHistory[HistQ2].Options[4]+"<br>");
+    $("#formHistQ2").append("<input type='radio' id='opt1' name='HistQuestion2' value='"+WHistory[HistQ2].Options[0]+"'>"+WHistory[HistQ2].Options[0]+"<br>");
+    $("#formHistQ2").append("<input type='radio' id='opt2' name='HistQuestion2' value='"+WHistory[HistQ2].Options[1]+"'>"+WHistory[HistQ2].Options[1]+"<br>");
+    $("#formHistQ2").append("<input type='radio' id='opt3' name='HistQuestion2' value='"+WHistory[HistQ2].Options[2]+"'>"+WHistory[HistQ2].Options[2]+"<br>");
+    $("#formHistQ2").append("<input type='radio' id='opt4' name='HistQuestion2' value='"+WHistory[HistQ2].Options[3]+"'>"+WHistory[HistQ2].Options[3]+"<br>");
+    $("#formHistQ2").append("<input type='radio' id='opt5' name='HistQuestion2' value='"+WHistory[HistQ2].Options[4]+"'>"+WHistory[HistQ2].Options[4]+"<br>");
+});
+$("#reload").on("click", function(){
+    $("#Geo").empty();
+    $("#Pol").empty();
+    $("#Hist").empty();
+});
+
+$(".radioBtn").on("click", function(){  
+var $radios = $('input[name="GeoQuestion1"]');
+   $radios.change(function() {
+       var $checked = $radios.filter(function() {
+         return $(this).prop('checked');
+       });
+       // Output the value of the checked radio
+       //console.log("prueba: "+$checked.val());
+     });
+    });
+
+$("#Done").on("click", function(){
+    
+    var checkedButton = $("input[name='GeoQuestion1']:checked")[0].value;
+    //debugger;
+    //console.log("Option checked: "+checkedButton);
+    //console.log("Right answer: "+GeoQ1_right);
+    if ($("input[name='GeoQuestion1']:checked")[0].value == GeoQ1_right){
+       ++rAnswers;
+    } else if ($("input[name='GeoQuestion1']:checked")[0].value == "") {
+       ++unAnswered;
+    } else {
+       ++wAnswers;
+   }
+
+    if ($("input[name='GeoQuestion2']:checked")[0].value == GeoQ2_right){
+    ++rAnswers;
+    } else if ($("input[name='GeoQuestion2']:checked")[0].value == "") {
+    ++unAnswered;
+    } else {
+    ++wAnswers;
+    }
+
+    if ($("input[name='PolQuestion1']:checked")[0].value == PolQ1_right){
+    ++rAnswers;
+    } else if ($("input[name='PolQuestion1']:checked")[0].value == "") {
+    ++unAnswered;
+    } else {
+    ++wAnswers;
+    }
+    
+    if ($("input[name='PolQuestion2']:checked")[0].value == PolQ2_right){
+    ++rAnswers;
+    } else if ($("input[name='PolQuestion2']:checked")[0].value == "") {
+    ++unAnswered;
+    } else {
+    ++wAnswers;
+    }
+
+    if ($("input[name='HistQuestion1']:checked")[0].value == HistQ1_right){
+        ++rAnswers;
+        } else if ($("input[name='HistQuestion1']:checked")[0].value == "") {
+        ++unAnswered;
+        } else {
+        ++wAnswers;
+        }
+        
+        if ($("input[name='HistQuestion2']:checked")[0].value == HistQ2_right){
+        ++rAnswers;
+        } else if ($("input[name='HistQuestion2']:checked")[0].value == "") {
+        ++unAnswered;
+        } else {
+        ++wAnswers;
+        }
+    
+
+
+   
+
+console.log(rAnswers);
+console.log(wAnswers);
+console.log(unAnswered);
 });

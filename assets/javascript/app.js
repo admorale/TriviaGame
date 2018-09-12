@@ -14,6 +14,7 @@ var HistQ1_right;
 var HistQ2_right;
 
 var displayedSecs = 15;
+var timerRun = true;
 
 var origArray = [1,2,3,4,5,6,7,8];
 
@@ -190,6 +191,7 @@ function randomNumHist(min,max,source) {
 }
 
 $("#start").on("click", function(){
+    timerRun = true;
     $("#Geo").empty();
     $("#Pol").empty();
     $("#Hist").empty();
@@ -289,12 +291,14 @@ $("#start").on("click", function(){
     function decrement() {
     displayedSecs = currentSecs % 60;
     currentSecs--;
+    if (timerRun) {
     if (isNaN (displayedSecs) ==false) {
         $("#timerText").html("Timer:  "+displayedSecs);
     }
     if(currentSecs >= 0) setTimeout(decrement,1000);
     if (displayedSecs === 0){
     getResults();
+    }
     }
     
 }
@@ -308,10 +312,14 @@ $("#reload").on("click", function(){
     rAnswers = 0;
     wAnswers = 0;
     unAnswered = 0;
+    timerRun = false;
+    $("#timerText").text('Timer : ');
 });
 
 $("#Done").on("click", function(){
+    timerRun = false;
     getResults(); 
+    $("#timerText").text('Timer : ');
 });
 
 function getResults (){

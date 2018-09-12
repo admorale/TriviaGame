@@ -191,9 +191,13 @@ $("#start").on("click", function(){
     $("#Geo").empty();
     $("#Pol").empty();
     $("#Hist").empty();
+    $(".results").remove();
     randomNumGeo(0,7);
     randomNumPol(0,7);
     randomNumHist(0,7);
+    rAnswers = 0;
+    wAnswers = 0;
+    unAnswered = 0;
     //Build the Geography Questions
     for (i=0; i<2; i++){
         var newQuestion = randomGeo[i];
@@ -282,6 +286,10 @@ $("#reload").on("click", function(){
     $("#Geo").empty();
     $("#Pol").empty();
     $("#Hist").empty();
+    $(".results").remove();
+    rAnswers = 0;
+    wAnswers = 0;
+    unAnswered = 0;
 });
 
 $(".radioBtn").on("click", function(){  
@@ -297,58 +305,70 @@ var $radios = $('input[name="GeoQuestion1"]');
 
 $("#Done").on("click", function(){
     
-    var checkedButton = $("input[name='GeoQuestion1']:checked")[0].value;
+    //var checkedButton = $("input[name='GeoQuestion1']:checked")[0].value;
     //debugger;
     //console.log("Option checked: "+checkedButton);
     //console.log("Right answer: "+GeoQ1_right);
-    if ($("input[name='GeoQuestion1']:checked")[0].value == GeoQ1_right){
+
+    if ($("input[name='GeoQuestion1']:checked").length == 0){
+        ++unAnswered;
+    } else if ($("input[name='GeoQuestion1']:checked")[0].value == GeoQ1_right){
        ++rAnswers;
-    } else if ($("input[name='GeoQuestion1']:checked")[0].value == "") {
-       ++unAnswered;
     } else {
        ++wAnswers;
-   }
+    }
 
-    if ($("input[name='GeoQuestion2']:checked")[0].value == GeoQ2_right){
-    ++rAnswers;
-    } else if ($("input[name='GeoQuestion2']:checked")[0].value == "") {
+   if ($("input[name='GeoQuestion2']:checked").length == 0){
     ++unAnswered;
+    } else if ($("input[name='GeoQuestion2']:checked")[0].value == GeoQ2_right){
+    ++rAnswers;
     } else {
     ++wAnswers;
     }
 
-    if ($("input[name='PolQuestion1']:checked")[0].value == PolQ1_right){
+    if ($("input[name='PolQuestion1']:checked").length == 0){
+        ++unAnswered;
+    } else if ($("input[name='PolQuestion1']:checked")[0].value == PolQ1_right){
     ++rAnswers;
-    } else if ($("input[name='PolQuestion1']:checked")[0].value == "") {
-    ++unAnswered;
     } else {
     ++wAnswers;
     }
     
-    if ($("input[name='PolQuestion2']:checked")[0].value == PolQ2_right){
+    if ($("input[name='PolQuestion2']:checked").length == 0){
+        ++unAnswered;
+    } else if ($("input[name='PolQuestion2']:checked")[0].value == PolQ2_right){
     ++rAnswers;
-    } else if ($("input[name='PolQuestion2']:checked")[0].value == "") {
-    ++unAnswered;
     } else {
     ++wAnswers;
+    } 
+
+    if ($("input[name='HistQuestion1']:checked").length == 0){
+        ++unAnswered;
+    } else if ($("input[name='HistQuestion1']:checked")[0].value == HistQ1_right){
+        ++rAnswers;
+    } else {
+        ++wAnswers;
     }
 
-    if ($("input[name='HistQuestion1']:checked")[0].value == HistQ1_right){
-        ++rAnswers;
-        } else if ($("input[name='HistQuestion1']:checked")[0].value == "") {
+    if ($("input[name='HistQuestion2']:checked").length == 0){
         ++unAnswered;
-        } else {
+    } else if ($("input[name='HistQuestion2']:checked")[0].value == HistQ2_right){
+        ++rAnswers;
+    } else {
         ++wAnswers;
-        }
+    }
         
-        if ($("input[name='HistQuestion2']:checked")[0].value == HistQ2_right){
-        ++rAnswers;
-        } else if ($("input[name='HistQuestion2']:checked")[0].value == "") {
-        ++unAnswered;
-        } else {
-        ++wAnswers;
-        }
-    
+        // if ($("input[name='HistQuestion2']:checked")[0].value == HistQ2_right){
+        // ++rAnswers;
+        // } else if ($("input[name='HistQuestion2']:checked")[0].value == "") {
+        // ++unAnswered;
+        // } else {
+        // ++wAnswers;
+        // }
+
+$("#finalResults").append("<p class='results' > Right Answers: "+rAnswers+"</p>");
+$("#finalResults").append("<p class='results' > Wrong Answers: "+wAnswers+"</p>");
+$("#finalResults").append("<p class='results' > Not Answered: "+unAnswered+"</p>"); 
 
 
    

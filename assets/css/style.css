@@ -12,7 +12,8 @@ body {
     background: rgb(30, 136, 172);
     border: 1.5px  solid black;
     margin-top: 0.5px;
-    line-height: 32px;
+    /*line-height: 32px;*/
+    height: 100px;
 }
 #start, #reload, #Done {
     margin-left: 2%;
@@ -34,6 +35,9 @@ body {
     width: 12%;
     height: 400px;
 }
+.Instruction h2 {
+    margin-bottom: 0px;
+}
 .QSection:after {
     content: "";
     display: block;
@@ -44,4 +48,28 @@ body {
 }
 .quest {
     font-size: 12px;
+}
+#finalResults {
+    height: 68px;
+}
+#Results{
+    margin-top: 10px;
+    margin-left: 2%;
+    color: white;
+    font-weight: bold;
+}
+.results {
+    display: inline-block;
+    background: white;
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+    margin: 0% 0% 0% 2%;
+    padding: 0% 1% 0% 1%;
+}
+ul {
+    padding: 20px;
+    text-align: left;
+    margin-top: 0px;
+
 }

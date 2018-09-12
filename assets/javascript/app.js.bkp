@@ -205,10 +205,12 @@ $("#start").on("click", function(){
     //Build the Geography Questions
     for (i=0; i<2; i++){
         var newQuestion = randomGeo[i];
+        //console.log(geography[newQuestion].Question);
     }
     // Geography Question #1
     var GeoQ1 = randomGeo[0];
     GeoQ1_right = geography[GeoQ1].rightAnswer;
+    //console.log(GeoQ1_right);
     $("#Geo").append("<div id='Q1'></div>");
     $("#Geo > #Q1").append("<p class='quest'>Question: "+geography[GeoQ1].Question);
     $("#Geo > #Q1").append("<form id='formGeoQ1'></form>");
@@ -220,6 +222,7 @@ $("#start").on("click", function(){
     // Geography Question #2
     var GeoQ2 = randomGeo[1];
     GeoQ2_right = geography[GeoQ2].rightAnswer;
+    //console.log(GeoQ2_right);
     $("#Geo").append("<div id='Q2'></div>");
     $("#Geo > #Q2").append("<p class='quest'>Question: "+geography[GeoQ2].Question);
     $("#Geo > #Q2").append("<form id='formGeoQ2'></form>");
@@ -232,6 +235,7 @@ $("#start").on("click", function(){
     //Building the Politics Questions
     for (i=0; i<2; i++){
         var newQuestion = randomPol[i];
+        //console.log(politics[newQuestion].Question);
     }
     // Politics Question #1
     var PolQ1 = randomPol[0];
@@ -258,6 +262,7 @@ $("#start").on("click", function(){
 
     for (i=0; i<2; i++){
         var newQuestion = randomHist[i];
+        //console.log(WHistory[newQuestion].Question);
     }
     var HistQ1 = randomHist[0];
     HistQ1_right = WHistory[HistQ1].rightAnswer;
@@ -281,17 +286,28 @@ $("#start").on("click", function(){
     $("#formHistQ2").append("<input type='radio' id='opt4' name='HistQuestion2' value='"+WHistory[HistQ2].Options[3]+"'>"+WHistory[HistQ2].Options[3]+"<br>");
     $("#formHistQ2").append("<input type='radio' id='opt5' name='HistQuestion2' value='"+WHistory[HistQ2].Options[4]+"'>"+WHistory[HistQ2].Options[4]+"<br>");
 
-    //Timer
+    //Prueba de TImer
     var initialSecs = 15;
     var currentSecs = initialSecs;
 
-    setTimeout(decrement,1000);
+    setTimeout(decrement,1000); 
+    //console.log(displayedSecs);
     function decrement() {
     displayedSecs = currentSecs % 60;
+    console.log("otra vez "+ displayedSecs);
+    //$("#finalResults").append(timerContainer);
+    //var displayedMin = Math.floor(currentSecs / 60) % 60;
+    //var displayedHrs = Math.floor(currentSecs / 60 /60);
+
+    //if(displayedMin <= 9) displayedMin = "0" + displayedMin;
+    //if(displayedSecs <= 9) displayedSecs =  displayedSecs;
     currentSecs--;
     if (isNaN (displayedSecs) ==false) {
         $("#timerText").html("Timer:  "+displayedSecs);
     }
+    //document.getElementById("timerText").innerHTML = "Timer:  "+displayedSecs;
+    //console.log(displayedSecs);
+    //document.getElementById("timerText").innerHTML = displayedHrs + ":" + displayedMin + ":" + displayedSecs;
     if(currentSecs >= 0) setTimeout(decrement,1000);
     if (displayedSecs === 0){
     getResults();
@@ -310,8 +326,21 @@ $("#reload").on("click", function(){
     unAnswered = 0;
 });
 
+// $(".radioBtn").on("click", function(){  
+// var $radios = $('input[name="GeoQuestion1"]');
+//    $radios.change(function() {
+//        var $checked = $radios.filter(function() {
+//          return $(this).prop('checked');
+//        });
+//        // Output the value of the checked radio
+//        //console.log("prueba: "+$checked.val());
+//      });
+//     });
+
 $("#Done").on("click", function(){
+
     getResults(); 
+
 });
 
 function getResults (){
@@ -362,7 +391,11 @@ function getResults (){
     } else {
         ++wAnswers;
     }
+    
+
 $("#finalResults").append("<p class='results' > Right Answers: "+rAnswers+"</p>");
 $("#finalResults").append("<p class='results' > Wrong Answers: "+wAnswers+"</p>");
 $("#finalResults").append("<p class='results' > Not Answered: "+unAnswered+"</p>");
+
 }
+

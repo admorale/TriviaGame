@@ -15,6 +15,7 @@ var HistQ2_right;
 
 var displayedSecs = 15;
 var timerRun = true;
+var answered = false;
 
 var origArray = [1,2,3,4,5,6,7,8];
 
@@ -192,6 +193,7 @@ function randomNumHist(min,max,source) {
 
 $("#start").on("click", function(){
     timerRun = true;
+    answered = false;
     $("#Geo").empty();
     $("#Pol").empty();
     $("#Hist").empty();
@@ -284,7 +286,7 @@ $("#start").on("click", function(){
     $("#formHistQ2").append("<input type='radio' id='opt5' name='HistQuestion2' value='"+WHistory[HistQ2].Options[4]+"'>"+WHistory[HistQ2].Options[4]+"<br>");
 
     //Timer
-    var initialSecs = 15;
+    var initialSecs = 30;
     var currentSecs = initialSecs;
 
     setTimeout(decrement,1000);
@@ -313,13 +315,17 @@ $("#reload").on("click", function(){
     wAnswers = 0;
     unAnswered = 0;
     timerRun = false;
+    answered = false;
     $("#timerText").text('Timer : ');
 });
 
 $("#Done").on("click", function(){
+    if (answered == false){
     timerRun = false;
     getResults(); 
     $("#timerText").text('Timer : ');
+    answered = true;
+    }
 });
 
 function getResults (){

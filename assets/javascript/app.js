@@ -16,6 +16,7 @@ var HistQ2_right;
 var displayedSecs = 15;
 var timerRun = true;
 var answered = false;
+var started = false;
 
 var origArray = [1,2,3,4,5,6,7,8];
 
@@ -192,8 +193,11 @@ function randomNumHist(min,max,source) {
 }
 
 $("#start").on("click", function(){
-    timerRun = true;
+    if (started == false){
+    cleanSlate();
+    started = true;
     answered = false;
+    timerRun = true;
     $("#Geo").empty();
     $("#Pol").empty();
     $("#Hist").empty();
@@ -300,23 +304,15 @@ $("#start").on("click", function(){
     if(currentSecs >= 0) setTimeout(decrement,1000);
     if (displayedSecs === 0){
     getResults();
+    answered = true;
     }
     }
-    
+}
 }
 
 });
 $("#reload").on("click", function(){
-    $("#Geo").empty();
-    $("#Pol").empty();
-    $("#Hist").empty();
-    $(".results").remove();
-    rAnswers = 0;
-    wAnswers = 0;
-    unAnswered = 0;
-    timerRun = false;
-    answered = false;
-    $("#timerText").text('Timer : ');
+    cleanSlate();
 });
 
 $("#Done").on("click", function(){
@@ -327,6 +323,20 @@ $("#Done").on("click", function(){
     answered = true;
     }
 });
+
+function cleanSlate(){
+    timerRun = false;
+    answered = false;
+    started = false;
+    $("#Geo").empty();
+    $("#Pol").empty();
+    $("#Hist").empty();
+    $(".results").remove();
+    rAnswers = 0;
+    wAnswers = 0;
+    unAnswered = 0;
+    $("#timerText").text('Timer : ');
+}
 
 function getResults (){
     if ($("input[name='GeoQuestion1']:checked").length == 0){
